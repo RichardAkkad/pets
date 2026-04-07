@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class PetsController {
 
-
+        @GetMapping("/homePage")
+        public String homePage(){
+            return "homePage";
+        }
 
 
 
