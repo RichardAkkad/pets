@@ -13,19 +13,19 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    int Id;
-
+    int id;
+    int age;
     String firstName;
     String surname;
-    int Age;
-    String Sex;
+    String sex;
+    LocalDate dateOfArrival;
+
     @Column(unique = true)
     String username;
-    String Password;
+    String password;
 
     roles role;
 
-    LocalDate DateOfArrival;
 
 
 }

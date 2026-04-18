@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Add Employee</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+          font-family: 'IBM Plex Sans', sans-serif;
+          background: #f0f2f5;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 2rem;
+        }
+
+        .card {
+          background: #fff;
+          border-radius: 10px;
+          box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+          width: 100%;
+          max-width: 600px;
+          padding: 2.5rem 2.5rem 2rem;
+        }
+
+        .card-header {
+          margin-bottom: 2rem;
+          border-bottom: 2px solid #2563eb;
+          padding-bottom: 1rem;
+        }
+
+        .card-header h1 {
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #1e293b;
+        }
+
+        .card-header p {
+          color: #64748b;
+          font-size: 0.875rem;
+          margin-top: 0.25rem;
+        }
+
+        .form-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1.25rem;
+        }
+
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          gap: 0.4rem;
+        }
+
+        .form-group.full-width {
+          grid-column: 1 / -1;
+        }
+
+        label {
+          font-size: 0.8rem;
+          font-weight: 600;
+          color: #374151;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+        }
+
+        input, select {
+          border: 1.5px solid #d1d5db;
+          border-radius: 6px;
+          padding: 0.6rem 0.85rem;
+          font-size: 0.95rem;
+          font-family: inherit;
+          color: #1e293b;
+          background: #f9fafb;
+          transition: border-color 0.2s, box-shadow 0.2s;
+          outline: none;
+        }
+
+        input:focus, select:focus {
+          border-color: #2563eb;
+          box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+          background: #fff;
+        }
+
+        .section-label {
+          grid-column: 1 / -1;
+          font-size: 0.7rem;
+          font-weight: 600;
+          color: #9ca3af;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          margin-top: 0.5rem;
+          padding-top: 0.75rem;
+          border-top: 1px solid #e5e7eb;
+        }
+
+        .btn-row {
+          display: flex;
+          justify-content: flex-end;
+          gap: 0.75rem;
+          margin-top: 2rem;
+        }
+
+        .btn {
+          padding: 0.65rem 1.75rem;
+          font-size: 0.95rem;
+          font-family: inherit;
+          font-weight: 500;
+          border-radius: 6px;
+          border: none;
+          cursor: pointer;
+          transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn:active { transform: scale(0.98); }
+
+        .btn-secondary {
+          background: #f1f5f9;
+          color: #475569;
+        }
+        .btn-secondary:hover { background: #e2e8f0; }
+
+        .btn-primary {
+          background: #2563eb;
+          color: #fff;
+        }
+        .btn-primary:hover { background: #1d4ed8; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="card-header">
+        <h1>Add New Employee</h1>
+        <p>Fill in the details below to register a new employee.</p>
+    </div>
+
+    <form th:action="@{/saveEmployeePage}" method="post" th:object="${employee}">
+        <div class="form-grid">
+
+            <!-- Personal Info -->
+            <div class="section-label">Personal Information</div>
+
+            <div class="form-group">
+                <label for="id">Employee ID</label>
+                <input type="number" th:field="*{id}" placeholder="e.g. 1001" required />
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" th:field="*{age}" placeholder="e.g. 30" min="16" max="100" required />
+            </div>
+
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" th:field="*{firstName}" placeholder="John" required />
+            </div>
+
+            <div class="form-group">
+                <label for="surname">Surname</label>
+                <input type="text" th:field="*{surname}" placeholder="Smith" required />
+            </div>
+
+            <div class="form-group">
+                <label for="sex">Sex</label>
+                <select th:field="*{sex}" required>
+                    <option value="" disabled>Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="dateOfArrival">Date of Arrival</label>
+                <input type="date" th:field="*{dateOfArrival}" required />
+            </div>
+
+            <!-- Account Info -->
+            <div class="section-label">Account Details</div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" th:field="*{username}" placeholder="jsmith" required />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" th:field="*{password}" placeholder="••••••••" required />
+            </div>
+
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select th:field="*{role}" required>
+                    <option value="" disabled>Select role</option>
+                    <option value="ADMIN">Admin</option>
+                    <option value="MANAGER">Manager</option>
+                    <option value="EMPLOYEE">Employee</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="btn-row">
+            <button type="reset" class="btn btn-secondary">Clear</button>
+            <button type="submit" class="btn btn-primary">Add Employee</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
