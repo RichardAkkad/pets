@@ -14,13 +14,13 @@ public  class customUserDetailsService implements UserDetailsService {
 
 
     @Autowired
-    EmployeeRepository dogRepository;
+    EmployeeRepository employeeRepository;
 
 
 
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
 
-        Optional<Employee> optionalEmployee=dogRepository.findByUsername(username);
+        Optional<Employee> optionalEmployee=employeeRepository.findByUsername(username);
         if(optionalEmployee.isPresent()){
            return User.builder().username(optionalEmployee.get().getUsername()).password(optionalEmployee.get().getPassword()).roles(optionalEmployee.get().getRole().toString()).build();
 

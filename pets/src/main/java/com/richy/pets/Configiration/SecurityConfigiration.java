@@ -27,9 +27,17 @@ public class SecurityConfigiration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+<<<<<<< Updated upstream
     return  http.csrf(customize-> customize.disable()).authorizeHttpRequests(auth->auth.requestMatchers("/homePage").permitAll().anyRequest().authenticated()).
                 formLogin(Customizer.withDefaults()).build();
         //httpBasic(Customizer.withDefaults()).build();
+=======
+    return  http.csrf(customize-> customize.disable()).authorizeHttpRequests(auth->auth.requestMatchers("/homePage","/employeePage","/saveEmployeePage")
+          .authenticated()).oauth2Login(Customizer.withDefaults()).formLogin(Customizer.withDefaults()).build();
+
+            //httpBasic(Customizer.withDefaults()).build();addFilterBefore(new CustomFilter(), AuthorizationFilter.class).build();
+
+>>>>>>> Stashed changes
         // login.loginPage("/myLoginPage") here is used to redirect to our own login page instead of the been sent to the generated login page(with /login) which is where it will send you automatically if we use loginForm method without using the loginPage method ,
         // With logoutUrl will send us to the login form if using a generated one (ie send us to /login) otherwise need to specify which url you want to use. (again not sure but i think need to use logOut method without logouturl method to be sent to generated login page
        //loginPage method is which endpoint to get verified from the login page, will make a custom loginPage page with Url /loginPage
