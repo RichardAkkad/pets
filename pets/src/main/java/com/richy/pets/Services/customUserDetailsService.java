@@ -7,10 +7,11 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
-public  class customUserDetailsService implements UserDetailsService {
+public abstract class customUserDetailsService implements UserDetailsService {
 
 
     @Autowired
@@ -22,10 +23,10 @@ public  class customUserDetailsService implements UserDetailsService {
 
         Optional<Employee> optionalEmployee=employeeRepository.findByUsername(username);
         if(optionalEmployee.isPresent()){
-           return User.builder().username(optionalEmployee.get().getUsername()).password(optionalEmployee.get().getPassword()).roles(optionalEmployee.get().getRole().toString()).build();
+            return User.builder().username(optionalEmployee.get().getUsername()).password(optionalEmployee.get().getPassword()).roles(optionalEmployee.get().getRole().toString()).build();
 
         }
-       // else if(optionalEmployee.isPresent() &&  ){
+        // else if(optionalEmployee.isPresent() &&  ){
 
         //}
         else{

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
+
 @Controller
 public class EmployeeController {
 
@@ -37,6 +38,7 @@ public class EmployeeController {
         @PostMapping("/saveEmployeePage")
         public String saveEmployee(@ModelAttribute Employee employee){
                 employee.setPassword(passwordEncoder.encode(employee.getPassword()));
+
                 employeeRepository.save(employee);
                 return "successfulPage";
         }

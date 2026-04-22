@@ -31,8 +31,6 @@
 	</properties>
 	<dependencies>
 		<dependency>
-<<<<<<< Updated upstream
-=======
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-oauth2-client</artifactId>
 		</dependency>
@@ -41,7 +39,6 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
->>>>>>> Stashed changes
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.7.10</version>
