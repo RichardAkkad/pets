@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Employee</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+        background: #f7f7f7;
+        color: #111;
+        font-family: 'Inter', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    .card {
+        background: #ffffff;
+        border: 1px solid #e4e4e4;
+        border-radius: 16px;
+        padding: 2.5rem;
+        width: 100%;
+        max-width: 540px;
+    }
+
+    .card-header {
+        margin-bottom: 2rem;
+    }
+
+    .back-link {
+        display: inline-block;
+        font-size: 0.85rem;
+        color: #666;
+        text-decoration: none;
+        margin-bottom: 1.2rem;
+    }
+
+    .back-link:hover { color: #111; }
+
+    h1 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #111;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .field {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .field.full { grid-column: 1 / -1; }
+
+    label {
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: #555;
+    }
+
+    input, select {
+        background: #fafafa;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        color: #111;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.9rem;
+        padding: 0.7rem 0.9rem;
+        width: 100%;
+        outline: none;
+        transition: border-color 0.15s;
+        -webkit-appearance: none;
+    }
+
+    input:focus, select:focus { border-color: #111; }
+
+    .divider {
+        border: none;
+        border-top: 1px solid #eee;
+        margin: 1.5rem 0;
+    }
+
+    button[type="submit"] {
+        width: 100%;
+        background: #111;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 500;
+        padding: 0.85rem;
+        cursor: pointer;
+        transition: opacity 0.2s;
+    }
+
+    button[type="submit"]:hover { opacity: 0.8; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <div class="card-header">
+    <a th:href="@{/homePage}" class="back-link">← Back to Home</a>
+    <h1>New Employee</h1>
+  </div>
+
+  <form th:action="@{/saveEmployeePage}" th:object="${employee}" method="post">
+    <div class="grid">
+
+      <div class="field">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" th:field="*{firstName}" placeholder="John" required />
+      </div>
+
+      <div class="field">
+        <label for="surname">Surname</label>
+        <input type="text" id="surname" th:field="*{surname}" placeholder="Smith" required />
+      </div>
+
+      <div class="field">
+        <label for="age">Age</label>
+        <input type="number" id="age" th:field="*{age}" placeholder="30" min="16" max="100" required />
+      </div>
+
+      <div class="field">
+        <label for="sex">Sex</label>
+        <select id="sex" th:field="*{sex}" required>
+          <option value="">Select</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="field full">
+        <label for="username">Username</label>
+        <input type="text" id="username" th:field="*{username}" placeholder="jsmith" required />
+      </div>
+
+      <div class="field full">
+        <label for="password">Password</label>
+        <input type="password" id="password" th:field="*{password}" placeholder="••••••••" required />
+      </div>
+
+      <div class="field">
+        <label for="role">Role</label>
+        <select id="role" th:field="*{role}" required>
+          <option value="">Select role</option>
+          <option value="EMPLOYEE">Employee</option>
+          <option value="ADMIN">Admin</option>
+          <option value="DOG">Dog</option>
+          <option value="CAT">Cat</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="dateOfArrival">Date of Arrival</label>
+        <input type="date" id="dateOfArrival" th:field="*{dateOfArrival}" required />
+      </div>
+
+    </div>
+
+    <hr class="divider" />
+
+    <button type="submit">Save Employee</button>
+  </form>
+</div>
+</body>
+</html>

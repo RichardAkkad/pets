@@ -25,9 +25,7 @@ public  class customUserDetailsService implements UserDetailsService {
            return User.builder().username(optionalEmployee.get().getUsername()).password(optionalEmployee.get().getPassword()).roles(optionalEmployee.get().getRole().toString()).build();
 
         }
-       // else if(optionalEmployee.isPresent() &&  ){
 
-        //}
         else{
             throw new UsernameNotFoundException("username not found");
         }
