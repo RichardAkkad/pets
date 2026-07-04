@@ -25,7 +25,7 @@ public class EmployeeController {
 
         @GetMapping("/homePage")
         public String homePage(){
-        return "homePage";
+        return "home";
         }
 
         @GetMapping("/employeePage")
