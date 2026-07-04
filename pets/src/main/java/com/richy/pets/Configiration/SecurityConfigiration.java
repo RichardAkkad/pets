@@ -1,20 +1,25 @@
 package com.richy.pets.Configiration;
 
 
+import com.richy.pets.Services.customUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 import org.springframework.security.config.annotation.web.configurers.FormLoginConfigurer;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 
 import java.io.IOException;
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -28,13 +33,8 @@ public class SecurityConfigiration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-    return  http.csrf(customize-> customize.disable()).authorizeHttpRequests(auth->auth.requestMatchers("/homePage").permitAll().anyRequest().authenticated()).
-                formLogin(Customizer.withDefaults()).build();
-        //httpBasic(Customizer.withDefaults()).build();
-
-
-
-
+    return  http.csrf(customize-> customize.disable()).authorizeHttpRequests(auth->auth.requestMatchers("/homePage").authenticated())
+        .formLogin(Customizer.withDefaults()).build();
 
         // login.loginPage("/myLoginPage") here is used to redirect to our own login page instead of the been sent to the generated login page(with /login) which is where it will send you automatically if we use loginForm method without using the loginPage method ,
         // With logoutUrl will send us to the login form if using a generated one (ie send us to /login) otherwise need to specify which url you want to use. (again not sure but i think need to use logOut method without logouturl method to be sent to generated login page
@@ -44,4 +44,17 @@ public class SecurityConfigiration {
 
 
     }
+
+    @Bean
+    public AuthenticationProvider AuthenticationProvider(){
+        System.out.println("method is activated");
+        DaoAuthenticationProvider provider=new DaoAuthenticationProvider();
+        provider.setUserDetailsService(new customUserDetailsService());
+        provider.setPasswordEncoder(new BCryptPasswordEncoder());
+        return provider;
+    }
+
+
+
+
 }
