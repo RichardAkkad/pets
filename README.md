@@ -1,4 +1,4 @@
-I am currently a big fan of Animals and I am creating a pet website where I can connect animal lovers with their perfect companions. With pet ownership on the rise, I am building a platform that makes finding,
+I am a big fan of Animals and I am creating a pet website where I can connect animal lovers with their perfect companions. With pet ownership on the rise, I am building a platform that makes finding,
 buying, and caring for pets as easy as possible.
 
 
