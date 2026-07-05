@@ -24,7 +24,7 @@ public  class CustomUserDetailsService implements UserDetailsService {
 
         Optional<Employee> optionalEmployee=employeeRepository.findByUsername(username);
         if(optionalEmployee.isPresent()){
-           return User.builder().username(optionalEmployee.get().getUsername()).password(optionalEmployee.get().getPassword()).roles(optionalEmployee.get().getRole().toString()).build();
+            return User.builder().username(optionalEmployee.get().getUsername()).password(optionalEmployee.get().getPassword()).roles(optionalEmployee.get().getRole().toString()).build();
 
         }
 
