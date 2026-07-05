@@ -48,6 +48,49 @@
         }
 
         a:hover { background: #0F6E56; }
+
+        .employee-dropdown {
+            position: fixed;
+            top: 1.2rem;
+            right: 1.5rem;
+            z-index: 9999;
+            font-family: Arial, sans-serif;
+        }
+
+        .employee-dropdown > button {
+            background: none;
+            border: none;
+            color: #1a1a1a;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .employee-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 1.8rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            overflow: hidden;
+            min-width: 160px;
+            z-index: 9999;
+        }
+
+        .employee-dropdown.open .employee-menu { display: block; }
+
+        .employee-menu a {
+            display: block;
+            background: none;
+            color: #1a1a1a;
+            text-align: left;
+            padding: 10px 16px;
+            border-radius: 0;
+        }
+
+        .employee-menu a:hover { background: #f0f0f0; }
     </style>
 </head>
 <body>
@@ -114,12 +157,25 @@
     </g>
 </svg>
 
-<a href="/employeePage" style="position:fixed;top:1.2rem;right:1.5rem;color:#1a1a1a;text-decoration:none;font-family:Arial,sans-serif;font-size:1rem;background:none;padding:0;border-radius:0;z-index:10;">Employee</a>
+<div class="employee-dropdown" id="employeeDropdown">
+    <button type="button" onclick="document.getElementById('employeeDropdown').classList.toggle('open')">Employee ▾</button>
+    <div class="employee-menu">
+        <a href="/employeeAddPage">Add Employee</a>
+        <a href="/employeeDeletePage">Delete Employee</a>
+    </div>
+</div>
 
 <div class="content">
     <h1>🐾 Paws & Co.</h1>
     <a href="#">Meet our pets</a>
 </div>
+
+<script>
+    document.addEventListener('mousedown', function (e) {
+        var dd = document.getElementById('employeeDropdown');
+        if (!dd.contains(e.target)) dd.classList.remove('open');
+    });
+</script>
 
 </body>
 </html>
