@@ -13,6 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.Optional;
 
 
 @Controller
@@ -28,10 +31,10 @@ public class EmployeeController {
         return "home";
         }
 
-        @GetMapping("/employeePage")
+        @GetMapping("/employeeAddPage")
         public String showEmployeeForm(Model model){
                 model.addAttribute("employee",new Employee());
-                return "saveEmployeePage";
+                return "employeeSavePage";
 
         }
         @PostMapping("/saveEmployeePage")
@@ -40,7 +43,20 @@ public class EmployeeController {
                 employeeRepository.save(employee);
                 return "successfulPage";
         }
-
+        @GetMapping("/employeeDeletePage")
+        public String searchEmployee(){
+               return "employeeDeletePage";
+        }
+        @PostMapping("/employeeDeletePage")
+        public String deleteEmployee(@RequestParam int id) {
+                Optional<Employee> employeeOptional = employeeRepository.findById(id);
+                if (employeeOptional.isPresent()) {
+                        employeeRepository.deleteById(id);
+                } else {
+                        return "unsuccessfulPage";
+                }
+                return "successfulPage";
+        }
 
 
 }
