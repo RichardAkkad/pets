@@ -6,8 +6,10 @@ buying, and caring for pets as easy as possible. I am currently working on the f
 
 ♿ Foster a Disabled Pet — Able to give a disabled pet a home.
 
-🔒 Built With Security in Mind — I will be including robust security features to protect your personal data and ensure every transaction is trustworthy and I will be using JWT instead of session based as my security.
+🔒 Built With Security in Mind — I will be including robust security features to protect personal data and I will be using JWT instead of session based as my security.
 
-💻 User-Friendly Design — Clean, accessible, and easy to navigate — whether you're browsing on mobile or desktop.
+💻 User-Friendly Design — Clean, accessible, and easy to navigate throught website.
 
-⚙️ Reliable & Well-Tested — Powered by thoroughly tested APIs to ensure smooth, dependable performance across every feature.
+⚙️ Reliable & Well-Tested — using tested APIs like Postman to check endpoints to ensure smooth, dependable performance across every feature.
+
+will be using a secure storage with AWS usign a ec2 server as well as s3 buckets as well as others.
