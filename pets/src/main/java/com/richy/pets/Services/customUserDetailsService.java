@@ -22,7 +22,7 @@ public  class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
 
 
-        Employee=employeeRepository.findByUsername(username).orElseThrow(new UsernameNotFoundException("username not found"));
+        Employee=employeeRepository.findByUsername(username).orElseThrow()->new UsernameNotFoundException("username not found"));
      
            return User.builder().username(Employee.getUsername()).password(Employee.get().getPassword()).roles(Employee.get().getRole().toString()).build();
 
