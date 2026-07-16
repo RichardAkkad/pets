@@ -22,17 +22,12 @@ public  class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
 
 
-        Optional<Employee> optionalEmployee=employeeRepository.findByUsername(username);
-        if(optionalEmployee.isPresent()){
-           return User.builder().username(optionalEmployee.get().getUsername()).password(optionalEmployee.get().getPassword()).roles(optionalEmployee.get().getRole().toString()).build();
+        Employee=employeeRepository.findByUsername(username).orElseThrow(()->new UsernameNotFoundException(username not found"));
+       
+           return User.builder().username(Employee.get().getUsername()).password(Employee.get().getPassword()).roles(Employee.get().getRole().toString()).build();
 
-        }
+        
 
-        else{
-            throw new UsernameNotFoundException("username not found");
-        }
-
-        //what we are trying to do is get the details from the database using the username here and return a UserDetails object
 
 
 
