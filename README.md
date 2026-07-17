@@ -1,5 +1,5 @@
-I am a big fan of Animals and I am creating a pet website where I can connect animal lovers with their perfect companions. With pet ownership on the rise, I am building a platform that makes finding,
-buying, and caring for pets as easy as possible. I am currently working on the following features mentioned below:
+I am a big fan of Animals and I am creating a pet website where I can connect animal lovers with their perfect companions. With pet ownership on the rise, I am currently building a platform that makes finding,
+buying, and caring for pets as easy as possible. I am working on the following features mentioned below:
 
 
 Browse & Buy — help customers find their ideal pet, browse available options, and complete secure transactions to purchase a pet.
