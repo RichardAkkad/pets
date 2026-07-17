@@ -2,7 +2,7 @@ I am a big fan of Animals and I am creating a pet website where I can connect an
 buying, and caring for pets as easy as possible. I am currently working on the following features mentioned below:
 
 
-Browse & Buy — to help you find perfect match.
+Browse & Buy — help customers find their ideal pet, browse available options, and complete secure transactions to purchase a pet.
 
 Foster a Disabled Pet — Able to give a disabled pet a home.
 
